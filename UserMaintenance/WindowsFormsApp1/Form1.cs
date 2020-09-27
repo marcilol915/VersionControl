@@ -21,6 +21,7 @@ namespace WindowsFormsApp1
             label1.Text = Resource1.Fullname;
             button2.Text = Resource1.Write;
             button1.Text = Resource1.Add;
+            button3.Text = Resource1.Delete;
             listBox1.DataSource = users;
             listBox1.ValueMember = "ID";
             listBox1.DisplayMember = "FullName";
@@ -53,6 +54,14 @@ namespace WindowsFormsApp1
                     sw.WriteLine();
                 }
             }
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            var u = new User();
+           
+            u = (User)(listBox1.SelectedItem);
+            users.Remove(u);
         }
     }
 }
