@@ -14,6 +14,7 @@ namespace Excel
 {
     public partial class Form1 : Form
     {
+        
         private string GetCell(int x, int y)
         {
             string ExcelCoordinate = "";
@@ -106,6 +107,27 @@ namespace Excel
                 xlWB = null;
                 xlApp = null;
             }
+        }
+        private void FormatTable()
+        {
+            string[] headers = new string[] {
+     "Kód",
+     "Eladó",
+     "Oldal",
+     "Kerület",
+     "Lift",
+     "Szobák száma",
+     "Alapterület (m2)",
+     "Ár (mFt)",
+     "Négyzetméter ár (Ft/m2)"};
+            exc.Range headerRange = xlSheet.get_Range(GetCell(1, 1), GetCell(1, headers.Length));
+            headerRange.Font.Bold = true;
+            headerRange.VerticalAlignment = exc.XlVAlign.xlVAlignCenter;
+            headerRange.HorizontalAlignment = exc.XlHAlign.xlHAlignCenter;
+            headerRange.EntireColumn.AutoFit();
+            headerRange.RowHeight = 40;
+            headerRange.Interior.Color = Color.LightBlue;
+            headerRange.BorderAround2(exc.XlLineStyle.xlContinuous, exc.XlBorderWeight.xlThick);
         }
         public Form1()
         {
