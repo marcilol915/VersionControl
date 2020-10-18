@@ -7,12 +7,14 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using web.Entities;
 using web.MnbServiceReference;
 
 namespace web
 {
     public partial class Form1 : Form
     {
+        BindingList<RateData> Rates;
         private void Currency()
         {
             var mnbService = new MNBArfolyamServiceSoapClient();
@@ -28,6 +30,8 @@ namespace web
         public Form1()
         {
             InitializeComponent();
+            Currency();
+            dataGridView1.DataSource = Rates.ToList();
         }
     }
 }
