@@ -17,7 +17,7 @@ namespace web
     public partial class Form1 : Form
     {
          BindingList<RateData> Rates;
-
+        BindingList<String> Currencies;
         
         private void Currency()
         {
@@ -25,7 +25,7 @@ namespace web
             var mnbService = new MNBArfolyamServiceSoapClient();
             var request = new GetExchangeRatesRequestBody()
             {
-                currencyNames = comboBox1.SelectedItem.ToString(),
+                currencyNames = "EUR",
                 startDate = dateTimePicker1.Value.ToString(),
                 endDate = dateTimePicker2.Value.ToString()
             };
@@ -66,14 +66,16 @@ namespace web
         }
         private void Refreshdata()
         {
-            Rates.Clear();
-            Currency();
-            chart();
+            // Rates.Clear();
+             Currency();
+             chart();
             dataGridView1.DataSource = Rates.ToList();
         }
         public Form1()
         {
             InitializeComponent();
+
+            comboBox1.DataSource = Currencies;
             Refreshdata();
         }
 
